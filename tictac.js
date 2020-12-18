@@ -13,7 +13,7 @@ boxes.forEach(box=>{
 		e.preventDefault();
 		moveMade(box, player);
 		track(box, player);
-		player%=2;
+		player= player%2==0?1:2;
 	});
 });
 function moveMade(box, player){
