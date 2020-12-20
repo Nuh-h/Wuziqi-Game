@@ -18,7 +18,6 @@ boxes.forEach(box=>{
 			track(box, player);
 			player= player==1?2:1;
 		}
-		
 	});
 });
 function moveMade(box, player){
@@ -31,17 +30,12 @@ function moveMade(box, player){
 }
 function track(box, player){
 	player-=1;
-	//if(dict[box.id][player%2]+dict[box.id][(player+1)%2]==1){alert("invalid move");
-	//}else{
 	dict[box.id][player]=1;
 	upadateStatus(player,count);
-	//count++;
-	//}
 	console.log(dict[box.id], count);
 }
 function upadateStatus(player,count){
-	//player-=1;
-	
+
 	if(dict['a1'][player]+dict['b1'][player]+dict['c1'][player]==3){
 		 resetBoxes();
 	}
@@ -68,14 +62,14 @@ function upadateStatus(player,count){
 	else if(dict['a3'][player]+dict['b2'][player]+dict['c1'][player]==3){
 		resetBoxes();
 	}
-	if(count==9) resetBoxes();
+	else if(count==9) resetBoxes("draw");
 	
 	
 }
-function resetBoxes(){
+function resetBoxes(val){
 	console.log("what's going on");
 	setTimeout(()=>{
-		if(count==9){
+		if(val=="draw"){
 			alert('It is a draw...!');
 		}
 		else{ alert('player..'+(player%2+1)+' won'); }
@@ -86,6 +80,6 @@ function resetBoxes(){
 			dict[i]=[0,0];
 		}
 		count=0;
-	},500);
+	},100);
 	
 };
