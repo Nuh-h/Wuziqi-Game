@@ -53,7 +53,7 @@ function upadateStatus(player,count){
 		resetBoxes();
 	}
 	else if(dict['c1'][player]+dict['c2'][player]+dict['c3'][player]==3){
-		resetBoxes();
+		resetBoxes(); 
 	}
 	
 	else if(dict['a1'][player]+dict['b2'][player]+dict['c3'][player]==3){
@@ -66,20 +66,37 @@ function upadateStatus(player,count){
 	
 	
 }
+
+var announcementBoard = document.createElement('p');
+announcementBoard.style.backgroundColor='blue';
+announcementBoard.classList.add('anB');
+var body = document.querySelector('body').firstElementChild;
+body.insertBefore(announcementBoard, body.querySelector('.footer'));
 function resetBoxes(val){
-	console.log("what's going on");
+	document.querySelector('.anB').style.width='10%';
 	setTimeout(()=>{
+		var text="";
 		if(val=="draw"){
-			alert('It is a draw...!');
+			//alert('It is a draw...!');
+			text="It is a draw ...!";
 		}
-		else{ alert('player..'+(player%2+1)+' won'); }
+		else{ 
+			//alert('player '+(player%2+1)+' ... won');
+			text="player "+(player%2+1)+" ... won";
+		 }
+		var colour = "";
+		var anB = document.querySelector('.anB');
+		if(val=="draw"){ colour="blue"; }
+		else if(player%2==0){ colour="green"; }
+		else {colour="orange";}
+		anB.innerText = text;
+		anB.style.backgroundColor=colour;
 		boxes.forEach(box=>{
 			box.style.removeProperty('background-color');
+			dict[box.id]=[0,0];
 		});
-		for(var i in dict){
-			dict[i]=[0,0];
-		}
 		count=0;
-	},100);
+		document.querySelector('.anB').style.width='100%';
+	},500);
 	
 };
