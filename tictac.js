@@ -11,12 +11,15 @@ var count = 0;
 boxes.forEach(box=>{
     box.addEventListener('click',(e)=>{
 		e.preventDefault();
-
+	
 		if(dict[box.id][player%2]+dict[box.id][(player+1)%2]==1){alert("invalid move"); return;}
 		else { count++;
 			moveMade(box, player);
 			track(box, player);
 			player= player==1?2:1;
+			document.querySelector('.anB').innerText="";//style.width='10%';
+			document.querySelector('.anB').style.width='10%';
+			//anB.innerText="";
 		}
 	});
 });
@@ -91,7 +94,7 @@ function resetBoxes(val){
 		else {colour="orange";}
 		anB.innerText = text;
 		anB.style.backgroundColor=colour;
-		boxes.forEach(box=>{
+		boxes.forEach(box=>{	
 			box.style.removeProperty('background-color');
 			dict[box.id]=[0,0];
 		});
