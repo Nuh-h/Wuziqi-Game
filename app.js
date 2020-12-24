@@ -16,31 +16,63 @@ for(var i=0; i<15; i++){
 container.appendChild(table);
 
 var player=0;
-var moveMade = false;
+var colours=["black","white"];
 table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
-	//console.log(e.parentElement.rowIndex);
-	moveMade=true;
-	if(moveMade && player==0){
-		e.classList.add('moveMade');
-		e.style.color="black";
-	}
-	else if(moveMade && player==1){
-		e.classList.add('moveMade');
-		e.style.color="white";
-	}
+
 	val=player==0?1:-1;
-	addMove(e.parentElement.rowIndex, e.cellIndex, val);
-	player = player==0?1:0;
-}));
-function addMove(e,row,col,val){
-	for(var i=row-4<0?0:row-4;i<(k=row+4<table.rows.length?row+5:table.rows.length);i++){
-		//if(table.rows[i].cells[col].style.color!=e.style.color) break;
-		gameArray[i][col]+=val;
-		if(gameArray[i][col]==5 || gameArray[i][col]==-5) {setTimeout(()=>{alert('winner found');},100); return;}
+	if(gameArray[e.parentElement.rowIndex][e.cellIndex]!=0){
+		alert("invalid move");
+	}else{
+		gameArray[e.parentElement.rowIndex][e.cellIndex]=val;
+		e.classList.add('moveMade');
+		e.style.color=colours[player];
+		addMove(e, e.parentElement.rowIndex, e.cellIndex);
+		player = player==0?1:0;
 	}
-	for(var j=col-4<0?0:col-4;i<(k=col+4<table.rows[0].cells.length?col+5:table.rows[0].cells.length);i++){
-		gameArray[row][j]+=val;
-		if(gameArray[row][j]==5 || gameArray[row][j]==-5) {setTimeout(()=>{alert('winner found');},500); return;}
+}));
+function addMove(e,row,col){
+	//var minrow = row-4<0?0:row-4;
+	//var maxrow = row+4<table.rows.length?row+5:table.rows.length;
+	//var mincol = col-4<0?0:col-4;
+	//var maxcol = col+4<table.rows.length?col+5:table.rows.length;
+	//for(var i=minrow;i<maxrow;i++){
+		//gameArray[i][col]+=val;	
+		//if(gameArray[i][col]==5 || gameArray[i][col]==-5) {setTimeout(()=>{alert('winner found');},100); return;}
+	//}
+	//for(var j=mincol;j<maxcol;j++){
+		//gameArray[row][j]+=val;
+		//console.log(gameArray[row][col]);
+		//if(gameArray[row][j]==5 || gameArray[row][j]==-5) {setTimeout(()=>{alert('winner found');},500); return;}
+	//}
+	var leftWard = false;
+	var rightWard = false;
+	var topWard = false;
+	var downWard = false;
+	var k = 1;
+	var leftSum = 0;
+	var rightSum = 0;
+	var topSum = 0;
+	var downSum = 0;
+	while((!leftWard) || (!rightWard) || (!topWard) || (!downWard)){
+		
+		if(!leftWard){
+			if(col-k<0 || gameArray[row][col-k]!=gameArray[row][col]){ leftWard=true;}
+			else{ leftSum+=gameArray[row][col-k];}//gameArray[row][col-k]+=val; }
+		}
+		if(!rightWard){
+			if(col+k>14 || gameArray[row][col+k]!=gameArray[row][col]){ rightWard=true;}			
+			else{ rigthSum+=gameArray[row][col+k];}//+=val; }
+		}
+		if(!topWard){
+			if(row-k<0 || gameArray[row-k][col]!=gameArray[row][col]){ topWard=true;}
+			else{ topSum+=gameArray[row-k][col];}//+=val; }
+		}
+		if(!downWard){
+			if(row+k>14 || gameArray[row+k][col]!=gameArray[row][col]){ downWard=true;}
+			else{ downSum+=gameArray[row+k][col];}//+=val; }
+		}
+		k++;
 	}
 	console.log(gameArray);
-}
+	if((leftWard+rightWard)>3 || (topSum+downSum)>3 || (leftWard+rightWard)<-3 || (topSum+downSum)<-3) console.log("game over");
+}	
