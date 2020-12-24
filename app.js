@@ -31,29 +31,13 @@ table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
 	}
 }));
 function addMove(e,row,col){
-	//var minrow = row-4<0?0:row-4;
-	//var maxrow = row+4<table.rows.length?row+5:table.rows.length;
-	//var mincol = col-4<0?0:col-4;
-	//var maxcol = col+4<table.rows.length?col+5:table.rows.length;
-	//for(var i=minrow;i<maxrow;i++){
-		//gameArray[i][col]+=val;	
-		//if(gameArray[i][col]==5 || gameArray[i][col]==-5) {setTimeout(()=>{alert('winner found');},100); return;}
-	//}
-	//for(var j=mincol;j<maxcol;j++){
-		//gameArray[row][j]+=val;
-		//console.log(gameArray[row][col]);
-		//if(gameArray[row][j]==5 || gameArray[row][j]==-5) {setTimeout(()=>{alert('winner found');},500); return;}
-	//}
-	var leftWard = false;
-	var rightWard = false;
-	var topWard = false;
-	var downWard = false;
+
+	var leftWard = false, rightWard = false, topWard = false, downWard = false;
+	var pldiagWard = false, prdiagWard = false, nldiagWard = false, nrdiagWard = false;
 	var k = 1;
-	var leftSum = 0;
-	var rightSum = 0;
-	var topSum = 0;
-	var downSum = 0;
-	while((!leftWard) || (!rightWard) || (!topWard) || (!downWard)){
+	var leftSum = 0, rightSum = 0, topSum = 0, downSum = 0;
+	var pldiagSum = 0, prdiagSum=0, nldiagSum = 0, nrdiagSum=0;
+	while(!leftWard || !rightWard || !topWard || !downWard || !nldiagWard || !nrdiagWard || !pldiagWard || !prdiagWard){
 		
 		if(!leftWard){
 			if(col-k<0 || gameArray[row][col-k]!=gameArray[row][col]){ leftWard=true;}
@@ -61,7 +45,7 @@ function addMove(e,row,col){
 		}
 		if(!rightWard){
 			if(col+k>14 || gameArray[row][col+k]!=gameArray[row][col]){ rightWard=true;}			
-			else{ rigthSum+=gameArray[row][col+k];}//+=val; }
+			else{ rightSum+=gameArray[row][col+k];}//+=val; }
 		}
 		if(!topWard){
 			if(row-k<0 || gameArray[row-k][col]!=gameArray[row][col]){ topWard=true;}
@@ -71,8 +55,28 @@ function addMove(e,row,col){
 			if(row+k>14 || gameArray[row+k][col]!=gameArray[row][col]){ downWard=true;}
 			else{ downSum+=gameArray[row+k][col];}//+=val; }
 		}
+		
+		if(!nldiagWard){
+			if(col-k<0 || row-k<0 || gameArray[row-k][col-k]!=gameArray[row][col]){ nldiagWard=true;}
+			else{ nldiagSum+=gameArray[row-k][col-k];}//gameArray[row][col-k]+=val; }
+		}
+		if(!nrdiagWard){
+			if(col+k>14 || row+k>14 || gameArray[row+k][col+k]!=gameArray[row][col]){ nrdiagWard=true;}			
+			else{ nrdiagSum+=gameArray[row+k][col+k];}//+=val; }
+		}
+		if(!prdiagWard){
+			if(row-k<0 || col+k>14 || gameArray[row-k][col+k]!=gameArray[row][col]){ prdiagWard=true;}
+			else{ prdiagSum+=gameArray[row-k][col+k];}//+=val; }
+		}
+		if(!pldiagWard){
+			if(row+k>14 || col-k<0 || gameArray[row+k][col-k]!=gameArray[row][col]){ pldiagWard=true;}
+			else{ pldiagSum+=gameArray[row+k][col-k];}//+=val; }
+		}
+		
 		k++;
 	}
-	console.log(gameArray);
-	if((leftWard+rightWard)>3 || (topSum+downSum)>3 || (leftWard+rightWard)<-3 || (topSum+downSum)<-3) console.log("game over");
+
+	//console.log(gameArray);
+	if((leftSum+rightSum)>3 || (topSum+downSum)>3 || (leftSum+rightSum)<-3 || (topSum+downSum)<-3) alert("game over::: player "+player+" won");
+	if((nldiagSum+nrdiagSum)>3 || (pldiagSum+prdiagSum)>3 || (nldiagSum+nrdiagSum)<-3 || (pldiagSum+prdiagSum)<-3) alert("game over::: player "+(player%2+1)+ " won");
 }	
