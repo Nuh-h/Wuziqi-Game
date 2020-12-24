@@ -1,3 +1,15 @@
+var info = document.createElement('span');
+//info.innerHTML='<p> Instructions: to win the game, you should attain five pieces in a row, whatever colour you are assigned. Black is the default colour for the first player.<p>';
+info.classList.add('info');
+info.addEventListener('click',()=>{
+	Swal.fire({
+    icon: 'info',
+    title: 'How to play:',
+    text: 'To win the game, you should attain five pieces in a row, whatever colour you are assigned. Black is the default colour for the first player.'}	
+)
+});
+document.body.insertBefore(info,document.body.firstElementChild);
+
 var gameArray = [];
 
 var container = document.querySelector('.container');
