@@ -26,12 +26,14 @@ table {
     border: 1px solid blue;
     width:600px;
     height: 500px;
+    border-collapse:collapse;    
+    background:#80003540;
 }
 
 td {
-    border: 1px dashed rgb(0 0 0);
+    border: 1.5px solid rgb(0 0 0);
     width:50px;
-    height:30px;    
+    height:30px;
 }
 .moveMade:before{
     font-family: "Font Awesome 5 Free"; 
