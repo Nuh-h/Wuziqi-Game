@@ -167,12 +167,30 @@ async function launchSwalForm(){
 		//preConfirm: 
 	})
 	if (val) {
+	  //testing this
+	  function encode(data) {
+		return Object.keys(data)
+			.map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+			.join("&")
+	  }
+
+	  const handleSubmit = (event) => {
+		event.preventDefault()
+		fetch("/", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: encode({
+			  "form-name": event.target.getAttribute("name"),
+			  ...name
+			})
+		 })
+	  }
 	  var feedback = swal.getHtmlContainer().querySelector('form');
+	  feedback.addEventListener('submit', handleSubmit);
 	  //console.log(feedback.querySelector('.name').value);
 	  Swal.fire({
 		  icon:'success',
-		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value
-+' for your feedback!!'
+		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value.trim()+' for your feedback!!'
 	  });
 	  feedback.submit();
 	}
