@@ -18,17 +18,7 @@ document.body.querySelector('.scores').addEventListener('click', ()=>{
 	document.body.querySelector('.message').innerHTML = "The score is currently "+scores[0]+" - "+scores[1];
 	//Swal.fire({icon:'info',text:"The score is currently "+scores[0]+" - "+scores[1]});
 	});
-/*var score1 = document.createElement('p');
- var score2 = document.createElement('p');
-score1.innerText = 0;
-score2.innerText = 0;
-score1.classList.add('score1');
-score2.classList.add('score2');
-var scores = document.createElement('div');
-scores.appendChild(score1);
-scores.appendChild(score2);
-scores.classList.add('scores');	 */
-//container.insertBefore(scores,table);
+
 var gameArray = [];
 var container = document.querySelector('.container');
 var table = document.createElement('table');
@@ -190,5 +180,5 @@ async function launchSwalForm(){
 	  }
 	  var feedback = swal.getHtmlContainer().querySelector('form');
 	  feedback.addEventListener('submit', handleSubmit);
-
+	}
 };
