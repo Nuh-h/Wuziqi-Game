@@ -65,12 +65,24 @@ h6{
 .info:hover{
 	cursor:pointer;
 }
-.hide{
+.message.hide{
 	display:none;
 }
 img{
 	width:30px;
 	height:30px;
+}
+.dashboard{
+	display:flex;
+}
+.message{
+	font-size:20px;
+	background:#b11f1f;
+	align-text:center;
+	display:flex;
+	justify-content:center;
+	width:80%;
+	transition:width 5s;
 }
 .buttons div:hover,img:hover{
 	background:grey;

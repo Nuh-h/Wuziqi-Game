@@ -13,7 +13,11 @@ document.body.insertBefore(info,document.body.firstElementChild);
 
 document.body.querySelector('.restart').addEventListener('click',resetBoard);
 document.body.querySelector('.reset').addEventListener('click', ()=>{ resetBoard(); scores=[0,0];});
-document.body.querySelector('.scores').addEventListener('click', ()=>{ Swal.fire({icon:'info',text:"The score is currently "+scores[0]+" - "+scores[1]});});
+document.body.querySelector('.scores').addEventListener('click', ()=>{
+	document.body.querySelector('.message').classList.toggle('hide');
+	document.body.querySelector('.message').innerHTML = "The score is currently "+scores[0]+" - "+scores[1];
+	//Swal.fire({icon:'info',text:"The score is currently "+scores[0]+" - "+scores[1]});
+	});
 /*var score1 = document.createElement('p');
  var score2 = document.createElement('p');
 score1.innerText = 0;
@@ -138,6 +142,7 @@ function resetBoard(){
 	movesCount=0;
 	table.querySelectorAll('td').forEach(e => e.classList.remove('moveMade'));
 	var toPlayer = (scores[0]==scores[1])?"":(scores[0]>scores[1]?" to player 1":" to player 2");
+	document.body.querySelector('.message').innerHTML = "The score is currently "+scores[0]+" - "+scores[1];
 	console.log("The score is currently "+scores[0]+" - "+scores[1]+toPlayer);
 }
 function newArray(){
