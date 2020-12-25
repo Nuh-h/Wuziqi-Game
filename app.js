@@ -155,11 +155,12 @@ async function launchSwalForm(){
 		showCancelButton: true,
 		confirmButtonText: "Submit"
 	})
-	//swal.getHtmlContainer().querySelector('form').addEventListener('submit',()=>{Swal.fire('Successful submission')});
-	document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
+	
 
 	if (val) {
-	  //testing this, highly unlikely to work
+	   //swal.getHtmlContainer().querySelector('form').addEventListener('submit',()=>{Swal.fire('Successful submission')});
+	   document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
+	  //still in test mode, though it is working fine
 	  function encode(data) {
 		return Object.keys(data)
 			.map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
