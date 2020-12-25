@@ -166,6 +166,8 @@ async function launchSwalForm(){
 		confirmButtonText: "Submit"//,
 		//preConfirm: 
 	})
+	document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
+	//document.querySelector('#swal2-content form').submit();
 	if (val) {
 	  //testing this, highly unlikely to work
 	  function encode(data) {
@@ -173,7 +175,7 @@ async function launchSwalForm(){
 			.map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
 			.join("&")
 	  }
-
+	
 	  const handleSubmit = (event) => {
 		event.preventDefault()
 		fetch("/", {
@@ -189,10 +191,12 @@ async function launchSwalForm(){
 	  feedback.addEventListener('submit', handleSubmit);
 	  
 	  //console.log(feedback.querySelector('.name').value);
-	  const { value: finish } = await Swal.fire({
+	  /* const { value: finish } = await Swal.fire({
 		  icon:'success',
 		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value.trim()+' for your feedback!!'
 	  });
-	  if(finish){ setTimeout(feedback.submit(),500);}
+	  if(finish){ 
+	  //document.body.querySelector('.hidden').appendChild(feedback);
+	  setTimeout(feedback.submit(),500);} */
 	}
 };
