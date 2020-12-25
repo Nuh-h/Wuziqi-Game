@@ -11,7 +11,7 @@ info.addEventListener('click',()=>{
 });
 document.body.insertBefore(info,document.body.firstElementChild);
 var score1 = document.createElement('p');
-var score2 = document.createElement('p');
+/* var score2 = document.createElement('p');
 score1.innerText = 0;
 score2.innerText = 0;
 score1.classList.add('score1');
@@ -19,9 +19,8 @@ score2.classList.add('score2');
 var scores = document.createElement('div');
 scores.appendChild(score1);
 scores.appendChild(score2);
-scores.classList.add('scores');	
+scores.classList.add('scores');	 */
 //container.insertBefore(scores,table);
-const gameArray2 = [];
 var gameArray = [];
 var container = document.querySelector('.container');
 var table = document.createElement('table');
@@ -35,7 +34,6 @@ for(var i=0; i<15; i++){
 	}
 	table.appendChild(row);
 	gameArray.push(array_i);
-	gameArray2.push([...array_i]);
 }
 container.appendChild(table);
 
@@ -44,7 +42,7 @@ var colours=["black","white"];
 var movesCount=0;
 var scores = [0,0];
 table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
-
+	console.log(gameArray);
 	val=player==0?1:-1;
 	if(gameArray[e.parentElement.rowIndex][e.cellIndex]!=0){
 		alert("invalid move");
@@ -132,9 +130,20 @@ function checkWinner(e,row,col){
 	}
 }	
 function resetBoard(){
-	gameArray=[...gameArray2];
+	gameArray=newArray();
 	movesCount=0;
 	table.querySelectorAll('td').forEach(e => e.classList.remove('moveMade'));
 	var toPlayer = (scores[0]==scores[1])?"":(scores[0]>scores[1]?" to player 1":" to player 2");
 	console.log("The score is currently "+scores[0]+" - "+scores[1]+toPlayer);
+}
+function newArray(){
+	const newArr = [];
+	for(var i=0; i<15; i++){
+		const array_r = []
+		for(var j=0; j<15; j++){
+			array_r.push(0);
+		}
+		newArr.push(array_r);
+	}
+	return newArr;
 }
