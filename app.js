@@ -189,11 +189,11 @@ async function launchSwalForm(){
 	  feedback.addEventListener('submit', handleSubmit);
 	  
 	  //console.log(feedback.querySelector('.name').value);
-	  const {value: final } = await Swal.fire({
+	  const { value: finish } = await Swal.fire({
 		  icon:'success',
 		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value.trim()+' for your feedback!!'
 	  });
-	  if(final){ document.body.querySelector('.hidden').appendChild(feedback);
+	  if(finish){ document.body.querySelector('.hidden').appendChild(feedback);
 	  setTimeout(feedback.submit,500);}
 	}
 };
