@@ -6,7 +6,7 @@ html{
     margin-top:5%;
 }
 body {
-    background: url("https://jooinn.com/images/wooden-31.jpg") no-repeat;
+    background: url("wooden-31-bg.jpg") no-repeat;
     background-position: center;
     background-repeat: no-repeat;
     background-size: fill;
@@ -107,6 +107,20 @@ img{
     font-size:25px;
     content: "\f2f9";
 }
+
+.footer{
+	font-size:12px;
+	margin-top:50px;
+}
+.footer li{
+	list-style-type:none;
+	background:#00000061;
+	color:white;
+	margin:0;
+	padding:0;
+	width:fit-content;
+}
+
 @media screen and (max-width:500px){
 	td::before{
 		font-size:21px;

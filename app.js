@@ -6,7 +6,7 @@ info.addEventListener('click',()=>{
     icon: 'info',
 	iconColor: 'green',
     title: 'How to play:',
-    text: 'To win the game, you should attain five pieces in a row, whatever colour you are assigned. Black is the default colour for the first player.'}	
+    text: 'To win the game, you should attain five pieces in a row (horizontally, diagonally, or vertically), whatever colour you are assigned. Black is by default player 1.'}	
 )
 });
 document.body.insertBefore(info,document.body.firstElementChild);
