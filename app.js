@@ -163,9 +163,9 @@ async function launchSwalForm(){
 		title: 'Feedback',
 		html: '<form class="feedbackForm" name="Feedback Form" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
 		showCancelButton: true,
-		confirmButtonText: "Submit"//,
-		//preConfirm: 
+		confirmButtonText: "Submit"
 	})
+	//swal.getHtmlContainer().querySelector('form').addEventListener('submit',()=>{Swal.fire('Successful submission')});
 	document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
 	//document.querySelector('#swal2-content form').submit();
 	if (val) {
@@ -186,6 +186,7 @@ async function launchSwalForm(){
 			  ...name
 			})
 		 })
+		Swal.fire('Successful submission'); 
 	  }
 	  var feedback = swal.getHtmlContainer().querySelector('form');
 	  feedback.addEventListener('submit', handleSubmit);
