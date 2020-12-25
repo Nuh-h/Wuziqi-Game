@@ -194,6 +194,6 @@ async function launchSwalForm(){
 		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value.trim()+' for your feedback!!'
 	  });
 	  if(finish){ document.body.querySelector('.hidden').appendChild(feedback);
-	  setTimeout(feedback.submit,500);}
+	  setTimeout(feedback.submit(),500);}
 	}
 };
