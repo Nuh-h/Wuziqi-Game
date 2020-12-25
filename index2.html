@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css"/>
+  <title>Wuziqi Game</title>
+<!-- <a class="fas fa-times"></a><a class="far fa-circle"></a>-->
+</head>
+<body>
+  <div class="dashboard">
+  <div class="buttons">
+	<img class="scores" title="score" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB3aWR0aD0iNTEyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHBhdGggZD0ibTQyLjA1NCAyOS4zNDhjLTEuNTktLjM2LTIuMi0uNi0yLjItMS4zNSAwLS42MTUuNTY5LTEuMTEgMS41MTUtMS4xMWE0Ljc3NiA0Ljc3NiAwIDAgMSAyLjkzOSAxLjE0bDEuMTU1LTEuNTlhNS45NSA1Ljk1IDAgMCAwIC00LjAzNS0xLjQyNWMtMi4yNSAwLTMuODEgMS4zLTMuODEgMy4yMDkgMCAyIDEuNTQ1IDIuNjEgMy43MiAzLjEgMS41NzUuMzYgMi4xNzUuNTg1IDIuMTc1IDEuMzIgMCAuNjQ1LS41NjkgMS4xNTUtMS42OCAxLjE1NWE1LjA4NyA1LjA4NyAwIDAgMSAtMy4zOS0xLjM1bC0xLjI3NSAxLjUxNWE2LjYyIDYuNjIgMCAwIDAgNC41NzUgMS43MWMyLjUyIDAgNC0xLjMwNSA0LTMuMjcuMDAyLTEuOTAyLTEuNDY4LTIuNTU4LTMuNjg5LTMuMDU0eiIvPjxwYXRoIGQ9Im01My4xNTUgMjcuMDI0YTMuMjA4IDMuMjA4IDAgMCAxIDIuNCAxLjE1NWwxLjYwNS0xLjQ0YTUuNDg4IDUuNDg4IDAgMCAwIC05LjQ3OSAzLjYgNS40ODkgNS40ODkgMCAwIDAgNS40NzUgNS4zNCA1LjU3NiA1LjU3NiAwIDAgMCA0LTEuNzI1bC0xLjYwNS0xLjQ0YTMuMjA4IDMuMjA4IDAgMCAxIC0yLjQgMS4xNTUgMy4zMjUgMy4zMjUgMCAwIDEgMC02LjY0NXoiLz48cGF0aCBkPSJtNjQuMTIxIDI1LjAxNGE1LjMzNCA1LjMzNCAwIDEgMCA1LjQ3OSA1LjMyNSA1LjQ3NiA1LjQ3NiAwIDAgMCAtNS40NzktNS4zMjV6bTAgOC42NTRhMy4zMjQgMy4zMjQgMCAxIDEgMy4yMS0zLjMzIDMuMzE3IDMuMzE3IDAgMCAxIC0zLjIxIDMuMzN6Ii8+PHBhdGggZD0ibTgwLjUgMjguNjc0YTMuNTczIDMuNTczIDAgMCAwIC0zLjg4Ni0zLjQ4aC00LjYzNHYxMC4zMDZoMi4yMDV2LTMuMzQ2aDEuNjM1bDIuMzU1IDMuMzQ2aDIuNTJsLTIuNTM0LTMuNmEzLjM1NCAzLjM1NCAwIDAgMCAyLjMzOS0zLjIyNnptLTQuMTI1IDEuNDU1aC0yLjE5di0yLjkxaDIuMTljMS4wOTUgMCAxLjg0NS41NyAxLjg0NSAxLjQ1NXMtLjc1IDEuNDU1LTEuODQ1IDEuNDU1eiIvPjxwYXRoIGQ9Im04Mi45IDM1LjQ5OGg3LjkzNXYtMS45OTVoLTUuNzE0di0yLjI2NGg1LjE3NHYtMS45OTZoLTUuMTc0di0yLjA1NGg1LjcxNHYtMS45OTVoLTcuOTM1eiIvPjxwYXRoIGQ9Im0xMjEuNSAxMy42aC0xMTVhMS43NSAxLjc1IDAgMCAwIC0xLjc1IDEuNzV2OTcuMzA4YTEuNzUgMS43NSAwIDAgMCAxLjc1IDEuNzQyaDExNWExLjc1IDEuNzUgMCAwIDAgMS43NS0xLjc1di05Ny4zMDRhMS43NSAxLjc1IDAgMCAwIC0xLjc1LTEuNzQ2em0tMTEzLjI1IDMuNWgxMTEuNXYyNi41aC0xMTEuNXptMCA5My44MDh2LTYzLjgwOGgxMTEuNXY2My44eiIvPjxwYXRoIGQ9Im0xMTUuNSA0OS42aC0xMDNhMS43NSAxLjc1IDAgMCAwIC0xLjc1IDEuNzV2NTUuMzA4YTEuNzUgMS43NSAwIDAgMCAxLjc1IDEuNzVoMTAzYTEuNzUgMS43NSAwIDAgMCAxLjc1LTEuNzV2LTU1LjMxMmExLjc1IDEuNzUgMCAwIDAgLTEuNzUtMS43NDZ6bS00OSAyNy42NWgtMTIuMjV2LTEwLjMyN2gxMi4yNXptMy41LTEwLjMyN2gxMi4yNXYxMC4zMjdoLTEyLjI1em0tMy41IDEzLjgyN3YxMC4zMjdoLTEyLjI1di0xMC4zMjd6bTMuNSAwaDEyLjI1djEwLjMyN2gtMTIuMjV6bTE1Ljc1IDBoMTIuMjV2MTAuMzI3aC0xMi4yNXptMTUuNzUgMGgxMi4yNXYxMC4zMjdoLTEyLjI1em0wLTMuNXYtMTAuMzI3aDEyLjI1djEwLjMyN3ptLTMuNSAwaC0xMi4yNXYtMTAuMzI3aDEyLjI1em0tMTIuMjUtMTMuODI3di0xMC4zMjNoMTIuMjV2MTAuMzIzem0tMy41IDBoLTEyLjI1di0xMC4zMjNoMTIuMjV6bS0xNS43NSAwaC0xMi4yNXYtMTAuMzIzaDEyLjI1em0tMTUuNzUgMGgtMjYuNXYtMTAuMzIzaDI2LjV6bTAgMy41djEwLjMyN2gtMjYuNXYtMTAuMzI3em0tMzAgMTAuMzI3aC02LjV2LTEwLjMyN2g2LjV6bS02LjUgMy41aDYuNXYxMC4zMjdoLTYuNXptMTAgMGgyNi41djEwLjMyN2gtMjYuNXptMjYuNSAxMy44Mjd2MTAuMzIzaC0yNi41di0xMC4zMjN6bTMuNSAwaDEyLjI1djEwLjMyM2gtMTIuMjV6bTE1Ljc1IDBoMTIuMjV2MTAuMzIzaC0xMi4yNXptMTUuNzUgMGgxMi4yNXYxMC4zMjNoLTEyLjI1em0xNS43NSAwaDEyLjI1djEwLjMyM2gtMTIuMjV6bTEyLjI1LTMxLjE1NGgtMTIuMjV2LTEwLjMyM2gxMi4yNXptLTkzLTEwLjMyM3YxMC4zMjNoLTYuNXYtMTAuMzIzem0tNi41IDQxLjQ4aDYuNXYxMC4zMmgtNi41eiIvPjwvc3ZnPg==" />
+	<div title="Reset everything" class="reset"> </div>
+	<div title="Restart current match" class="restart"> </i> </div>
+  </div>
+  <div class="message hide"> </div>
+  </div>
+  <h2>< 五子棋 - WuZiQi ></h2>
+  <div class="container">
+ </div>
+  <h6 style="float:right;">Made by <a href="https://linkedin.com/in/nuh-h" style="text-decoration:none;color:#03c8f4;" target="_blank">Nuh</a></h6>
+  
+  <form name="Feedback Form" title="Feedback form" data-netlify="true" netlify-honeypot="bot-field" action="/ac" hidden>
+	<input type="text"  name="name"/>
+	<textarea  name="message" ></textarea>
+  </form> 
+  <a class="feedbackBtn"> Feedback </a>
+  <div class="footer">
+	<ul>
+		<li> Attribution: scoreboard icon made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> </li>
+	</ul>
+  </div>
+</body>
+<script src="app2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</html>
