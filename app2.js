@@ -161,43 +161,23 @@ document.querySelector('.feedbackBtn').addEventListener('click',launchSwalForm)
 async function launchSwalForm(){
 	const { value: val } = await Swal.fire({
 		title: 'Feedback',
-		html: '<form class="feedbackForm" name="Feedback Form" method="POST" data-netlify="true" action="/ac"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
+		html: '<form class="feedbackForm" name="Feedback Form" method="POST" data-netlify="true" action="/#" target="_blank"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
 		showCancelButton: true,
 		confirmButtonText: "Submit"
 	})
+	document.querySelectorAll('form').forEach(frm => {
+	frm.addEventListener('submit',(e)=>{ e.preventDefault();}); });
+
 	//swal.getHtmlContainer().querySelector('form').addEventListener('submit',()=>{Swal.fire('Successful submission')});
 	//document.querySelector('#swal2-content form').submit();
 	if (val) {
+	  const name = swal.getHtmlContainer().querySelector('#name').value.trim();
 	  document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
-	  //testing this, highly unlikely to work
-	  function encode(data) {
-		return Object.keys(data)
-			.map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-			.join("&")
-	  }
-	
-	  const handleSubmit = (event) => {
-		event.preventDefault()
-		fetch("/", {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: encode({
-			  "form-name": event.target.getAttribute("name"),
-			  ...name
-			})
-		 })
-		Swal.fire('Successful submission'); 
-	  }
-	  var feedback = swal.getHtmlContainer().querySelector('form');
-	  feedback.addEventListener('submit', handleSubmit);
 	  
-	  //console.log(feedback.querySelector('.name').value);
-	  /* const { value: finish } = await Swal.fire({
+	  Swal.fire({
 		  icon:'success',
-		  text:'Thank you very much '+swal.getHtmlContainer().querySelector('#name').value.trim()+' for your feedback!!'
+		  text:'Thank you very much '+name+' for your feedback!!'
 	  });
-	  if(finish){ 
-	  //document.body.querySelector('.hidden').appendChild(feedback);
-	  setTimeout(feedback.submit(),500);} */
 	}
 };
+
