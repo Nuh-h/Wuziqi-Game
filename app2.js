@@ -161,7 +161,7 @@ document.querySelector('.feedbackBtn').addEventListener('click',launchSwalForm)
 async function launchSwalForm(){
 	const { value: val } = await Swal.fire({
 		title: 'Feedback',
-		html: '<form class="feedbackForm" name="Feedback Form" method="POST" data-netlify="true" action="/#" target="_blank"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
+		html: '<form class="feedbackForm" name="Feedback Form" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
 		showCancelButton: true,
 		confirmButtonText: "Submit"
 	})
@@ -172,12 +172,11 @@ async function launchSwalForm(){
 	//document.querySelector('#swal2-content form').submit();
 	if (val) {
 	  const name = swal.getHtmlContainer().querySelector('#name').value.trim();
-	  document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit());
-	  
-	  Swal.fire({
+	  document.querySelector('.swal2-confirm').onclick(swal.getHtmlContainer().querySelector('form').submit(Swal.fire({
 		  icon:'success',
 		  text:'Thank you very much '+name+' for your feedback!!'
-	  });
+	  })));
+	  
 	}
 };
 
