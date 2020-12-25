@@ -10,8 +10,12 @@ info.addEventListener('click',()=>{
 )
 });
 document.body.insertBefore(info,document.body.firstElementChild);
-var score1 = document.createElement('p');
-/* var score2 = document.createElement('p');
+
+document.body.querySelector('.restart').addEventListener('click',resetBoard);
+document.body.querySelector('.reset').addEventListener('click', ()=>{ resetBoard(); scores=[0,0];});
+document.body.querySelector('.scores').addEventListener('click', ()=>{ Swal.fire({icon:'info',text:"The score is currently "+scores[0]+" - "+scores[1]});});
+/*var score1 = document.createElement('p');
+ var score2 = document.createElement('p');
 score1.innerText = 0;
 score2.innerText = 0;
 score1.classList.add('score1');
@@ -42,7 +46,7 @@ var colours=["black","white"];
 var movesCount=0;
 var scores = [0,0];
 table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
-	console.log(gameArray);
+	//console.log(gameArray);
 	val=player==0?1:-1;
 	if(gameArray[e.parentElement.rowIndex][e.cellIndex]!=0){
 		alert("invalid move");
@@ -142,7 +146,7 @@ function newArray(){
 		const array_r = []
 		for(var j=0; j<15; j++){
 			array_r.push(0);
-		}
+		}	
 		newArr.push(array_r);
 	}
 	return newArr;
