@@ -68,6 +68,33 @@ h6{
 .hide{
 	display:none;
 }
+img{
+	width:30px;
+	height:30px;
+}
+.buttons div:hover,img:hover{
+	background:grey;
+	cursor:pointer;
+	padding:2px;
+}
+.buttons{
+	display:flex;
+	justify-content:space-around;
+	width:30%;
+	border:1px solid aliceblue;
+}
+.reset:before{
+    font-family: "Font Awesome 5 Free";
+    font-weight:600;
+    font-size:25px;
+    content: "\f2f1";
+}
+.restart:before{
+	font-family: "Font Awesome 5 Free";
+    font-weight:600;
+    font-size:25px;
+    content: "\f2f9";
+}
 @media screen and (max-width:500px){
 	td::before{
 		font-size:21px;
