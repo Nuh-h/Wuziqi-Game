@@ -4,14 +4,25 @@ info.classList.add('info');
 info.addEventListener('click',()=>{
 	Swal.fire({
     icon: 'info',
+	iconColor: 'green',
     title: 'How to play:',
     text: 'To win the game, you should attain five pieces in a row, whatever colour you are assigned. Black is the default colour for the first player.'}	
 )
 });
 document.body.insertBefore(info,document.body.firstElementChild);
-
+var score1 = document.createElement('p');
+var score2 = document.createElement('p');
+score1.innerText = 0;
+score2.innerText = 0;
+score1.classList.add('score1');
+score2.classList.add('score2');
+var scores = document.createElement('div');
+scores.appendChild(score1);
+scores.appendChild(score2);
+scores.classList.add('scores');	
+//container.insertBefore(scores,table);
+const gameArray2 = [];
 var gameArray = [];
-
 var container = document.querySelector('.container');
 var table = document.createElement('table');
 for(var i=0; i<15; i++){
@@ -24,11 +35,14 @@ for(var i=0; i<15; i++){
 	}
 	table.appendChild(row);
 	gameArray.push(array_i);
+	gameArray2.push([...array_i]);
 }
 container.appendChild(table);
 
 var player=0;
 var colours=["black","white"];
+var movesCount=0;
+var scores = [0,0];
 table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
 
 	val=player==0?1:-1;
@@ -38,12 +52,21 @@ table.querySelectorAll('td').forEach(e => e.addEventListener('click',()=>{
 		gameArray[e.parentElement.rowIndex][e.cellIndex]=val;
 		e.classList.add('moveMade');
 		e.style.color=colours[player];
-		addMove(e, e.parentElement.rowIndex, e.cellIndex);
+		movesCount++;
+		checkWinner(e, e.parentElement.rowIndex, e.cellIndex);
 		player = player==0?1:0;
 	}
 }));
-function addMove(e,row,col){
+function checkWinner(e,row,col){
 
+	if(movesCount==15*15) {
+		Swal.fire({
+			icon: 'error',
+			title: 'It is a draw!'
+		});
+		resetBoard();
+		return;
+	}
 	var leftWard = false, rightWard = false, topWard = false, downWard = false;
 	var pldiagWard = false, prdiagWard = false, nldiagWard = false, nrdiagWard = false;
 	var k = 1;
@@ -89,6 +112,29 @@ function addMove(e,row,col){
 	}
 
 	//console.log(gameArray);
-	if((leftSum+rightSum)>3 || (topSum+downSum)>3 || (leftSum+rightSum)<-3 || (topSum+downSum)<-3) alert("game over::: player "+player+" won");
-	if((nldiagSum+nrdiagSum)>3 || (pldiagSum+prdiagSum)>3 || (nldiagSum+nrdiagSum)<-3 || (pldiagSum+prdiagSum)<-3) alert("game over::: player "+(player%2+1)+ " won");
+	if((leftSum+rightSum)>3 || (topSum+downSum)>3 || (leftSum+rightSum)<-3 || (topSum+downSum)<-3){
+		var message = "game over::: player "+(player%2+1)+" won";
+		Swal.fire({
+			icon: 'success',
+			title: message
+		});
+		scores[player]++;
+		resetBoard();
+	}
+	if((nldiagSum+nrdiagSum)>3 || (pldiagSum+prdiagSum)>3 || (nldiagSum+nrdiagSum)<-3 || (pldiagSum+prdiagSum)<-3){
+		var message = "game over::: player "+(player%2+1)+" won";
+		Swal.fire({
+			icon: 'success',
+			title: message
+		});
+		scores[player]++;
+		resetBoard();
+	}
 }	
+function resetBoard(){
+	gameArray=[...gameArray2];
+	movesCount=0;
+	table.querySelectorAll('td').forEach(e => e.classList.remove('moveMade'));
+	var toPlayer = (scores[0]==scores[1])?"":(scores[0]>scores[1]?" to player 1":" to player 2");
+	console.log("The score is currently "+scores[0]+" - "+scores[1]+toPlayer);
+}
