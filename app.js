@@ -156,3 +156,20 @@ function newArray(){
 	}
 	return newArr;
 }
+
+document.querySelector('.feedbackBtn').addEventListener('click',swalForm)
+async function swalForm(){
+	const { value: val } = await Swal.fire({
+		title: 'Feedback',
+		html: '<form name="Feedback Form" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="Feedback Form"/><input type="text" id="name" name="Sender\'s name" class="swal2-input" placeholder="Your name"><textarea id="feedback" name="Sender\'s message" class="swal2-input" placeholder="Your feedback..."></textarea></form>',
+		showCancelButton: true,
+		confirmButtonText: "Submit"
+	})
+
+	if (val) {
+	  Swal.fire({
+		  icon:'success',
+		  text:'Thank you very much '+document.querySelector('#name').innerText+' for your feedback!!'
+	  });
+	}
+};
